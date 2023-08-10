@@ -57,14 +57,14 @@ export async function GET(req, res) {
   if (!encryptedData) {
     return NextResponse.json({ error: "Missing data" }, { status: 400 });
   }
-  const secretKey = NEXT_PUBLIC_SECRET_KEY;
+  const secretKey = "1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d";
   let url;
   try {
     const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
     const decryptedData = decryptedBytes.toString(CryptoJS.enc.Utf8);
     const { token: decryptedToken, expiresAt } = JSON.parse(decryptedData);
     url = decryptedToken;
-    console.log(url, expiresAt);
+    console.log(url);
     if (Date.now() > expiresAt) {
       return NextResponse.json({ error: "Expired token" }, { status: 401 });
     }

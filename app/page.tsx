@@ -144,7 +144,6 @@ export default function Home() {
       return;
     }
     const expirationTime = Date.now() + 10000;
-    console.log(expirationTime)
     const dataToEncrypt = JSON.stringify({
       token: link,
       expiresAt: expirationTime,
@@ -155,7 +154,7 @@ export default function Home() {
     ).toString();
     setToken(encryptedData);
   }
-  
+
   return (
     <div className="pt-6 mx-12">
       <nav className="flex justify-between ">
