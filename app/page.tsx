@@ -114,7 +114,7 @@ export default function Home() {
       revalidateOnReconnect: false,
     }
   );
-
+  
   useEffect(() => {
     if (data || error) {
       setdisableInput(false);
@@ -128,6 +128,7 @@ export default function Home() {
   }, [err, error, data]);
 
   async function Submit() {
+    setError("");
     setdisableInput(true);
     if (!link) {
       setError("Please enter a link");
@@ -143,6 +144,7 @@ export default function Home() {
       return;
     }
     const expirationTime = Date.now() + 10000;
+    console.log(expirationTime)
     const dataToEncrypt = JSON.stringify({
       token: link,
       expiresAt: expirationTime,
@@ -153,7 +155,7 @@ export default function Home() {
     ).toString();
     setToken(encryptedData);
   }
-
+  
   return (
     <div className="pt-6 mx-12">
       <nav className="flex justify-between ">
