@@ -138,11 +138,7 @@ export default function Home() {
       setError("Invalid Link");
       return;
     }
-    const secretKey = process.env.NEXT_PUBLIC_SECRET_KEY;
-    if (!secretKey) {
-      setError("Something went wrong");
-      return;
-    }
+    const secretKey = "1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d";
     const expirationTime = Date.now() + 10000;
     const dataToEncrypt = JSON.stringify({
       token: link,
