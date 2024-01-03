@@ -7,7 +7,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, setup environment
 
 - ENV:
->  `NEXT_PUBLIC_SECRET_KEY=yoursecretkey`
+>  `NEXT_PUBLIC_SECRET_KEY=szX28G9QY8d6YEON9qo9yq0tYl7ASRuF`
 
 Then run the development server:
 
