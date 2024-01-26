@@ -1,11 +1,10 @@
 "use client";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
-import CryptoJS from "crypto-js";
-import Image from "next/image";
 
 const fetchWithToken = async (url: URL | RequestInfo) => {
   const res = await fetch(url);
@@ -114,7 +113,7 @@ export default function Home() {
       revalidateOnReconnect: false,
     }
   );
-  
+
   useEffect(() => {
     if (data || error) {
       setdisableInput(false);
@@ -138,17 +137,8 @@ export default function Home() {
       setError("Invalid Link");
       return;
     }
-    const secretKey = "1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d";
-    const expirationTime = Date.now() + 20000;
-    const dataToEncrypt = JSON.stringify({
-      token: link,
-      expiresAt: expirationTime,
-    });
-    const encryptedData = CryptoJS.AES.encrypt(
-      dataToEncrypt,
-      secretKey
-    ).toString();
-    setToken(encryptedData);
+
+    setToken(link);
   }
 
   return (
@@ -174,9 +164,9 @@ export default function Home() {
         <div className="flex flex-col justify-center ">
           <div className="self-center text-black">
             <Input
-              disabled={disableInput}
               className="max-w-80"
               placeholder="Enter the link"
+              value={link}
               onChange={(e) => setLink(e.target.value)}
             />
           </div>
