@@ -18,39 +18,6 @@ const fetchWithToken = async (url: URL | RequestInfo) => {
   return await res.json();
 };
 
-function getFormattedSize(sizeBytes: number) {
-  let size, unit;
-
-  if (sizeBytes >= 1024 * 1024) {
-    size = sizeBytes / (1024 * 1024);
-    unit = "MB";
-  } else if (sizeBytes >= 1024) {
-    size = sizeBytes / 1024;
-    unit = "KB";
-  } else {
-    size = sizeBytes;
-    unit = "bytes";
-  }
-
-  return `${size.toFixed(2)} ${unit}`;
-}
-
-function convertEpochToDateTime(epochTimestamp: number) {
-  const normalDate = new Date(epochTimestamp * 1000);
-
-  const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  };
-
-  const formattedDate = normalDate.toLocaleDateString(undefined, options);
-  return formattedDate;
-}
-
 function isValidUrl(url: string | URL) {
   try {
     new URL(url);
@@ -218,7 +185,7 @@ export default function Home() {
                 className="blur-md hover:filter-none rounded-md p-3 transition duration-300 ease-in-out transform scale-100 hover:scale-110 hover:rounded-md opacity-100 hover:opacity-100 "
                 style={{ objectFit: "contain" }}
                 loading="lazy"
-                src={data?.thumbs?.url1}
+                src={data?.thumb}
                 height={200}
                 width={200}
                 alt={""}
@@ -230,24 +197,18 @@ export default function Home() {
             <h1 className="text-sm lg:text-xl text-white ">
               Title:{" "}
               <span className="text-white  text-md lg:text-2xl font-bold ">
-                {data?.server_filename}
+                {data?.file_name}
               </span>
             </h1>
             <h1 className="text-sm lg:text-xl text-white ">
               File Size:{" "}
               <span className="text-white text-md lg:text-2xl font-bold ">
-                {getFormattedSize(data.size)}
-              </span>
-            </h1>
-            <h1 className="text-sm lg:text-xl text-white ">
-              Uploaded On:{" "}
-              <span className="text-white  text-md lg:text-2xl font-bold ">
-                {convertEpochToDateTime(data.server_ctime)}
+                {data.size}
               </span>
             </h1>
           </div>
           <Link
-            href={data?.dlink}
+            href={data?.direct_link}
             target="_blank"
             rel="noopener noreferrer"
             className="py-0 text-xl font-bold text-white self-center"
