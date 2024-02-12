@@ -11,7 +11,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
   }
   try {
     const data = await fetch(
-      `https://cd5b-174-138-88-233.ngrok-free.app/get?url=${link}`
+      `https://afca-174-138-88-233.ngrok-free.app/get?url=${link}`
     );
 
     if (!data)

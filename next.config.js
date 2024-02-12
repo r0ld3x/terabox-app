@@ -10,12 +10,12 @@ module.exports = {
         port: "",
         pathname: "**",
       },
-      // {
-      //   protocol: "https",
-      //   hostname: "data.terabox.app",
-      //   port: "",
-      //   pathname: "**",
-      // },
+      {
+        protocol: "https",
+        hostname: "data.terabox.app",
+        port: "",
+        pathname: "**",
+      },
       {
         protocol: "https",
         hostname: "**",
