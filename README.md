@@ -3,21 +3,14 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
+*Download code*
+  ```git clone https://github.com/r0ld3x/terabox-app.git```
 
-First, setup environment
+*Install dependencies*
+  ```npm i```
 
-- ENV:
->  `NEXT_PUBLIC_SECRET_KEY=szX28G9QY8d6YEON9qo9yq0tYl7ASRuF`
-
-Then run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+*Run the development server*
+  ```npm run dev```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
