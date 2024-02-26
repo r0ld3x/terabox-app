@@ -6,6 +6,15 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 
+interface ResponseData {
+  file_name: string;
+  link: string;
+  direct_link: string;
+  thumb: string;
+  size: string;
+  sizebytes: number;
+}
+
 const fetchWithToken = async (url: URL | RequestInfo) => {
   const res = await fetch(url);
   if (!res.ok) {
@@ -71,7 +80,7 @@ export default function Home() {
   const [token, setToken] = useState("");
   const [disableInput, setdisableInput] = useState(false);
 
-  const { data, error, isLoading } = useSWR(
+  const { data, error, isLoading } = useSWR<ResponseData>(
     token ? [`/api?data=${encodeURIComponent(token)}`] : null,
     ([url]) => fetchWithToken(url),
     {
@@ -82,6 +91,7 @@ export default function Home() {
   );
 
   useEffect(() => {
+    if (data) document.title = data.file_name;
     if (data || error) {
       setdisableInput(false);
       setLink("");
@@ -114,10 +124,16 @@ export default function Home() {
         <div className="self-center">
           <Link href="/">Terabox Downloader</Link>
         </div>
-        <ul>
+        <ul className="flex items-center gap-3 ">
           <li>
             {/* <Camera color="red" size={48} /> */}
-            <Button className="bg-blue-600">
+            <Button className="bg-slate-600  ">
+              <Link href="https://github.com/r0ld3x/terabox-app">Github</Link>
+            </Button>
+          </li>
+          <li>
+            {/* <Camera color="red" size={48} /> */}
+            <Button className="bg-blue-600  ">
               <Link href="https://t.me/RoldexVerse">Telegram</Link>
             </Button>
           </li>
@@ -197,7 +213,7 @@ export default function Home() {
             <h1 className="text-sm lg:text-xl text-white ">
               Title:{" "}
               <span className="text-white  text-md lg:text-2xl font-bold ">
-                {data?.file_name}
+                {data.file_name}
               </span>
             </h1>
             <h1 className="text-sm lg:text-xl text-white ">
