@@ -82,7 +82,7 @@ export default function Home() {
 
   const { data, error, isLoading } = useSWR<ResponseData>(
     token ? [`/api?data=${encodeURIComponent(token)}`] : null,
-    ([url]) => fetchWithToken(url),
+    ([url]: [string]) => fetchWithToken(url),
     {
       revalidateIfStale: false,
       revalidateOnFocus: false,
